@@ -1,50 +1,55 @@
+
 # Oral Health Surveillance System (OHSS)
 
-Oral Health Surveillance System (OHSS) is a full-stack web application designed to streamline the process of scheduling, managing, and administering oral health examinations and sessions. This project builds on Java (Spring Boot) for the backend and Angular for the frontend.
+The Oral Health Surveillance System (OHSS) is a web-based tool designed for teams of doctors to visit schools, collect oral health data, and (in future versions) perform data analysis. Currently, the application enables efficient data retrieval and management from multiple schools by multiple examiners. Data analysis features are planned for future version.
 
-## Features
 
-- User authentication and authorization
-- Examiner and examination management
-- Session scheduling and tracking
-- RESTful API integration
-- Secure backend with Spring Security
+## Purpose
+
+
+OHSS is designed for two main roles:
+
+- **Doctors:** Visit schools and collect oral health data using the system.
+- **Admin:** Manage doctor accounts and, in the future, perform data analysis on the collected data.
+
+Currently, only data collection and doctor management are available. Data analysis features for admins are planned for future development.
+
 
 
 ## Tech Stack
 
 - **Backend:** Java, Spring Boot, Maven
 - **Frontend:** Angular, TypeScript, HTML, CSS
-- **Database:** MySQL (set connection URL in `application.properties`).
+- **Database:** MySQL (configure in `application.properties`)
+
 
 ## Getting Started
 
 ### Prerequisites
-- Java 17+
-- Node.js 16+
+- Java 17 or higher
+- Node.js 16 or higher
 - npm or yarn
 - Maven
 
-
 ### Backend Setup
-1. Navigate to the backend directory:
+1. Go to the backend directory:
    ```bash
    cd ohss-backend
    ```
-2. Add your database credentials to `src/main/resources/application.properties`:
+2. Set your database credentials in `src/main/resources/application.properties`:
    ```properties
    spring.datasource.username=YOUR_USERNAME
    spring.datasource.password=YOUR_PASSWORD
    ```
-   Or set them as environment variables.
+   Or use environment variables.
 3. Build and run the backend:
    ```bash
    ./mvnw spring-boot:run
    ```
-4. The backend will start on `http://localhost:8080` by default.
+   The backend runs at `http://localhost:8080` by default.
 
 ### Frontend Setup
-1. Navigate to the frontend directory:
+1. Go to the frontend directory:
    ```bash
    cd ohss-frontend
    ```
@@ -56,36 +61,12 @@ Oral Health Surveillance System (OHSS) is a full-stack web application designed 
    ```bash
    npm start
    ```
-4. The frontend will be available at `http://localhost:4200`.
+   The frontend runs at `http://localhost:4200` by default.
+
 
 ## Project Structure
 
-- `ohss-backend/` - Spring Boot backend (Java)
-- `ohss-frontend/` - Angular frontend (TypeScript)
+- `ohss-backend/` — Spring Boot backend (Java)
+- `ohss-frontend/` — Angular frontend (TypeScript)
 
-## Why This Project?
 
-This project showcases:
-- Full-stack development skills
-- Clean code and modular architecture
-- REST API design and integration
-- Real-world authentication and authorization
-- Automated testing (unit and integration)
-- Modern UI/UX practices
-
-## How to Use
-- Clone the repository
-- Follow the setup instructions above
-- Explore the codebase and features
-
-## License
-
-This project is for demonstration and job application purposes. Please contact the author for further use or collaboration.
-
----
-
-**Author:** [Your Name]
-
-**Contact:** [your.email@example.com]
-
-**LinkedIn:** [Your LinkedIn Profile]
