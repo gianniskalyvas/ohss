@@ -38,12 +38,13 @@ public class SecurityConfig {
                 // Public endpoints - no authentication required
                 .requestMatchers("/api/v1/auth/login").permitAll()
                 
-                // ADMIN & EXAMINER - view examinations
-                .requestMatchers("/api/v1/examinations/**").hasAnyRole("ADMIN", "EXAMINER")
-                .requestMatchers("/api/v1/sessions/**").hasAnyRole("ADMIN", "EXAMINER")
+                // EXAMINER - view examinations
+                .requestMatchers("/api/v1/examinations/**").hasAnyRole( "EXAMINER")
+                .requestMatchers("/api/v1/sessions/**").hasAnyRole("EXAMINER")
 
-                // ADMIN only - manage examiners (create, update, delete, view all)
+                // ADMIN only - manage examiners (create, update, delete, view all) and analytics
                 .requestMatchers("/api/v1/examiners/**").hasRole("ADMIN")
+                .requestMatchers("/api/v1/analytics/**").hasRole("ADMIN")
                 
                 // All other requests require authentication
                 .anyRequest().authenticated()

@@ -1,7 +1,8 @@
 package com.ohss.controller;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ohss.exception.ResourceNotFoundException;
@@ -32,9 +34,12 @@ public class ExaminerController {
 
 
     @GetMapping("/examiners")
-    public List<Examiner> getAllExaminers() {
-        return examinerRepository.findAll();
+    public Page<Examiner> getAllExaminers(@RequestParam int page, @RequestParam int size) {
+        
+        Pageable pageable = PageRequest.of(page, size);
+        return examinerRepository.findAll(pageable);
     }
+
 
     @PostMapping("/examiners")
     public Examiner createExaminer(@RequestBody Examiner examiner) {
@@ -67,9 +72,15 @@ public class ExaminerController {
         return ResponseEntity.ok(updatedExaminer);
     }
 
+    @Autowired
+    private com.ohss.repository.ExaminationRepository examinationRepository;
+
     @DeleteMapping("/examiners/{id}")
     public ResponseEntity<Void> deleteExaminer(@PathVariable Long id) {
-        Examiner examiner = examinerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Examiner not found with id: " + id));
+        Examiner examiner = examinerRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Examiner not found with id: " + id));
+        // Delete all examinations for this examiner
+        examinationRepository.findByExaminerId(id).forEach(exam -> examinationRepository.delete(exam));
         examinerRepository.delete(examiner);
         return ResponseEntity.noContent().build();  
     }

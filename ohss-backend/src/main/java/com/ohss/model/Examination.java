@@ -4,6 +4,8 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,14 +38,17 @@ public class Examination {
     @Column(name = "gender")
     private String gender;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "smoking_status")
-    private String smokingStatus;
+    private SmokingStatus smokingStatus;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "alcohol_consumption")
-    private String alcoholConsumption;
+    private AlcoholConsumption alcoholConsumption;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "brushing_frequency")
-    private String brushingFrequency;
+    private BrushingFrequency brushingFrequency;
 
     @Column(name = "last_visit")
     private Date lastVisit;
@@ -142,27 +147,27 @@ public class Examination {
         this.gender = gender;
     }   
 
-    public String getSmokingStatus() {
+    public SmokingStatus getSmokingStatus() {
         return smokingStatus;
     }
 
-    public void setSmokingStatus(String smokingStatus) {
+    public void setSmokingStatus(SmokingStatus smokingStatus) {
         this.smokingStatus = smokingStatus;
     }
 
-    public String getAlcoholConsumption() {
+    public AlcoholConsumption getAlcoholConsumption() {
         return alcoholConsumption;
     }
 
-    public void setAlcoholConsumption(String alcoholConsumption) {
+    public void setAlcoholConsumption(AlcoholConsumption alcoholConsumption) {
         this.alcoholConsumption = alcoholConsumption;
     }
 
-    public String getBrushingFrequency() {
+    public BrushingFrequency getBrushingFrequency() {
         return brushingFrequency;
     }
 
-    public void setBrushingFrequency(String brushingFrequency) {
+    public void setBrushingFrequency(BrushingFrequency brushingFrequency) {
         this.brushingFrequency = brushingFrequency;
     }
 

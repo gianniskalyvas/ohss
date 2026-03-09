@@ -53,13 +53,9 @@ Currently, only data collection and doctor management are available. Data analys
    ```bash
    cd ohss-frontend
    ```
-2. Install dependencies:
+2. Start the Angular development server:
    ```bash
-   npm install
-   ```
-3. Start the Angular development server:
-   ```bash
-   npm start
+   ng serve
    ```
    The frontend runs at `http://localhost:4200` by default.
 

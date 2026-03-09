@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ohss.exception.ResourceNotFoundException;
 import com.ohss.model.Examiner;
 import com.ohss.model.Session;
+import com.ohss.repository.ExaminationRepository;
 import com.ohss.repository.ExaminerRepository;
 import com.ohss.repository.SessionRepository;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -73,10 +75,15 @@ public class SessionController {
         return ResponseEntity.ok(updatedSession);
     }
 
+    @Autowired
+    private ExaminationRepository examinationRepository;
+
     @DeleteMapping("/sessions/{id}")
     public ResponseEntity<Void> deleteSession(@PathVariable Long id) {
         Session session = sessionRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Session not found with id: " + id));
+        // Delete all examinations for this session
+        examinationRepository.findBySessionId(id).forEach(exam -> examinationRepository.delete(exam));
         sessionRepository.delete(session);
         return ResponseEntity.noContent().build();
     }
