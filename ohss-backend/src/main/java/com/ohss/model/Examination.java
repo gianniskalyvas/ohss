@@ -80,14 +80,25 @@ public class Examination {
     public Examination() {
     }
 
-    public Examination(Examiner examiner, Session session, Integer cpi, Integer dt, Integer mt, Integer ft, Date lastVisit) {
+    public Examination(Examiner examiner, Session session, Integer birthYear, String gender,
+                       SmokingStatus smokingStatus, AlcoholConsumption alcoholConsumption,
+                       BrushingFrequency brushingFrequency, Date lastVisit,
+                       Boolean diabetes, Boolean cardiovascularDisease,
+                       Integer dt, Integer mt, Integer ft, Integer cpi) {
         this.examiner = examiner;
         this.session = session;
-        this.cpi = cpi;
+        this.birthYear = birthYear;
+        this.gender = gender;
+        this.smokingStatus = smokingStatus;
+        this.alcoholConsumption = alcoholConsumption;
+        this.brushingFrequency = brushingFrequency;
+        this.lastVisit = lastVisit;
+        this.diabetes = diabetes;
+        this.cardiovascularDisease = cardiovascularDisease;
         this.dt = dt;
         this.mt = mt;
         this.ft = ft;
-        this.lastVisit = lastVisit;
+        this.cpi = cpi;
     }
 
     public Long getId() {
@@ -138,6 +149,12 @@ public class Examination {
         this.birthYear = birthYear;
     }
 
+    public Integer getAge() {
+        if (birthYear == null) return null;
+        int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+        return currentYear - birthYear;
+    }
+    
     public String getGender() {
         return gender;
     }
@@ -209,6 +226,13 @@ public class Examination {
 
     public void setFt(Integer ft) {
         this.ft = ft;
+    }
+
+    public Integer getDMFT() {
+        int dtVal = dt != null ? dt : 0;
+        int mtVal = mt != null ? mt : 0;
+        int ftVal = ft != null ? ft : 0;
+        return dtVal + mtVal + ftVal;
     }
 
 }
