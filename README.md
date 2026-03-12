@@ -10,7 +10,7 @@ The Oral Health Surveillance System (OHSS) is a web-based tool designed for team
 OHSS is designed for two main roles:
 
 - **Doctors:** Visit schools and collect oral health data using the system.
-- **Admin:** Manage doctor accounts and, in the future, perform data analysis on the collected data.
+- **Admin:** Manage doctor accounts and, perform data analysis on the collected data.
 
 Currently, only data collection and doctor management are available. Data analysis features for admins are planned for future development.
 
