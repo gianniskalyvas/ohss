@@ -35,12 +35,6 @@ graph TD
     B --> C
 ```
 
-## Getting Started
-
-### Prerequisites
-- [Docker](https://www.docker.com/get-started)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-
 ### Setup
 
 1. Clone the repository:
