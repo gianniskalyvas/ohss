@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -16,8 +17,12 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
     private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor(
-        "your-256-bit-secret-key-must-be-at-least-32-characters-long".getBytes()
+        jwtSecret.getBytes()
     );
     // private final long JWT_TOKEN_VALIDITY = 24 * 60 * 60 * 1000; // 24 hours
     private final long JWT_TOKEN_VALIDITY = 24 * 60 * 60 * 1000; // 24 hours

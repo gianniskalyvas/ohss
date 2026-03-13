@@ -1,0 +1,5 @@
+# filepath: /home/user/Desktop/ohss/ohss-backend/.dockerignore
+target
+.git
+.gitignore
+Dockerfile
